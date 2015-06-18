@@ -6,6 +6,8 @@ import com.digitalpetri.opcua.sdk.client.OpcUaClient;
 
 public interface ClientExample {
 
+	
+	//vigar
     void run(OpcUaClient client, CompletableFuture<OpcUaClient> future) throws Exception;
 
 }
