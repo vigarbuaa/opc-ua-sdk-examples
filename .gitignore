@@ -13,3 +13,8 @@
 **/target/*
 target/*
 **/dependency-reduced-pom.xml
+/target/
+
+*.prefs
+.project
+/.classpath
