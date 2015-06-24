@@ -1,77 +1,35 @@
-# OPC-UA Stack
+# OPC-UA SDK Example
 
-A high-performance and open-source OPC-UA stack implementation.
 
-Note: this is just a *stack* implementation (channels, serialization, structures, security). If you're looking to build a client or server, try the [OPC-UA SDK](https://github.com/digitalpetri/opc-ua-sdk).
-
-Running the Example
---------
-Certificate validation is implemented in the server stack and so upon running the ClientServerExample for the first time you'll probably see a stack trace containing this exception:
-
-```java
-Caused by: com.digitalpetri.opcua.stack.core.UaException: security checks failed
-	at UaTcpClientAcknowledgeHandler.onError(UaTcpClientAcknowledgeHandler.java:162)
-	at UaTcpClientAcknowledgeHandler.decode(UaTcpClientAcknowledgeHandler.java:89)
-```
-
-You'll now find a "security" folder in whatever you've configured your working directory as when running the example. Inside that folder, you should find "rejected", "revocation", and "trusted" folders. Move the client certificate in the "rejected" folder to the "trusted" folder and run the example again.
-
-Maven
---------
-
-Snapshots are available from the Sonatype repository:
-```xml
-<repository>
-    <id>oss-sonatype</id>
-    <name>oss-sonatype</name>
-    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-</repository>
-```
-
-Release versions will be available from Maven Central and won't require an explicit repository definition.
-
-#### Stack Server
-```xml
-<dependency>
-    <groupId>com.digitalpetri.opcua</groupId>
-    <artifactId>stack-server</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-</dependency>
-```
-
-#### Stack Client
-```xml
-<dependency>
-    <groupId>com.digitalpetri.opcua</groupId>
-    <artifactId>stack-client</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-</dependency>
-```
-
+This program has 2 parts
+  --Server Example
+  --Client Example
+  
 Supported Features
+
+
+Usage
 --------
-
-#### Transport Protocols
-* OPC-UA TCP
-
-#### Data Encoding
-* OPC-UA Binary
+ You can debug the sdk examples on 1 computer
  
-#### Security Profiles
-* None
-* Basic128Rsa15
-* Basic256
-* Basic256Sha256
+ Server Part: 
+ 	in cmd, run the following cmd (You need to replace the running path for yourself)
+ 	cd c:\Users\vigar\git\opc-ua-sdk-examples
+ 	mvn clean package
+ 	java -jar sdk-examples-1.0.0-SNAPSHOT.jar
+ 
+ 
+ Client Part: 
+	In Eclipse, right click client example(ReadExample.java/WriteExample.java/), run it 	
 
-##### Not Supported
-* SOAP/HTTP/HTTPS Transport
-* XML Data Encoding
 
-
+  
 Get Help
 --------
 
-Contact kevinherron@gmail.com for more information.
+Contact vigarxueer@126.com for more information.
+
+
 
 
 License
