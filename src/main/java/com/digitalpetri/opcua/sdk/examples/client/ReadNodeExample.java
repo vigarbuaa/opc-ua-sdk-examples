@@ -12,31 +12,34 @@ import org.slf4j.LoggerFactory;
 
 public class ReadNodeExample implements ClientExample {
 
-    public static void main(String[] args) throws Exception {
-        String endpointUrl = "opc.tcp://localhost:12685/digitalpetri";
-        SecurityPolicy securityPolicy = SecurityPolicy.None;
+	public static void main(String[] args) throws Exception {
+		
+			String endpointUrl = "opc.tcp://localhost:12685/digitalpetri";
+			SecurityPolicy securityPolicy = SecurityPolicy.None;
 
-        ReadNodeExample example = new ReadNodeExample();
+			ReadNodeExample example = new ReadNodeExample();
+			for (int i = 0; i < 10; i++) {
+			new ClientExampleRunner(endpointUrl, securityPolicy, example).run();
+		}
+	}
 
-        new ClientExampleRunner(endpointUrl, securityPolicy, example).run();
-    }
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+	@Override
+	public void run(OpcUaClient client, CompletableFuture<OpcUaClient> future)
+			throws Exception {
+		// synchronous connect
+		client.connect().get();
 
-    @Override
-    public void run(OpcUaClient client, CompletableFuture<OpcUaClient> future) throws Exception {
-        // synchronous connect
-        client.connect().get();
+		// read the value of the current time node
+		UaVariableNode currentTimeNode = client.getAddressSpace()
+				.getVariableNode(Identifiers.Server_ServerStatus_CurrentTime);
 
-        // read the value of the current time node
-        UaVariableNode currentTimeNode = client.getAddressSpace()
-                .getVariableNode(Identifiers.Server_ServerStatus_CurrentTime);
+		DataValue value = currentTimeNode.readValue().get();
 
-        DataValue value = currentTimeNode.readValue().get();
+		logger.info("currentTime value={}", value);
 
-        logger.info("currentTime value={}", value);
-
-        future.complete(client);
-    }
+		future.complete(client);
+	}
 
 }

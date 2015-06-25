@@ -75,8 +75,8 @@ public class ClientExampleRunner {
                 logger.error("Error running example: {}", ex.getMessage(), ex);
             }
 
-            Stack.releaseSharedResources();
-            System.exit(0);
+//            Stack.releaseSharedResources();
+//            System.exit(0);
         });
 
         try {

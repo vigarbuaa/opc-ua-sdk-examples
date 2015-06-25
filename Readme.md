@@ -14,8 +14,11 @@ Usage
  
  Server Part: 
  	in cmd, run the following cmd (You need to replace the running path for yourself)
+ 	
  	cd c:\Users\vigar\git\opc-ua-sdk-examples
+ 	
  	mvn clean package
+ 	
  	java -jar sdk-examples-1.0.0-SNAPSHOT.jar
  
  

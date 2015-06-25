@@ -31,11 +31,11 @@ public class MethodExample implements ClientExample {
         client.connect().get();
 
         // call the sqrt(x) function provided by CttNamespace
-        sqrt(client, 16.0).exceptionally(ex -> {
+        sqrt(client, (double)10000.0f).exceptionally(ex -> {
             logger.error("error invoking sqrt()", ex);
             return -1.0;
-        }).thenAccept(v -> {
-            logger.info("sqrt(16)={}", v);
+        }).thenAccept((v) -> {
+            logger.info("sqrt(10000)={}", v);
 
             future.complete(client);
         });
